@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+</head>
+
+<script type="text/javascript" th:inline="javascript">
+	/*<![CDATA[*/
+	var memberlist = /*[[${memberlist}]]*/;
+	/*]]>*/
+</script>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>이름</th>
+				<th>권한</th>
+				<th>이메일</th>	
+			</tr>				
+		</thead>
+		<tbody th:with="value='id001'">
+			<!-- 
+				each 구분 alias (l, index)
+				l = item(data)
+				index = index(Iteration Status)
+			-->
+			<tr th:each ="l,index:${memberlist}">
+				<th:block th:if = "${l.m_id == value}">
+					<td th:text="${l.m_id}" style="background-color:blue"></td>
+				</th:block>
+				<th:block th:unless="${l.m_id == value}">
+					<td th:text="${l.m_id}"></td>
+				</th:block>
+				<td th:text="${index.count}"></td>
+				<td th:text="${l.m_name}"></td>
+				<td th:text="${l.m_level}"></td>
+				<td> [[${l.m_email}]]></td>
+			</tr>
+	
+		</tbody>
+		
+		
+	</table>
+</body>
+</html>

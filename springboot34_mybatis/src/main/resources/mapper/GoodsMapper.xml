@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ksmart.springboot34_mybatis.mapper.GoodsMapper"><!-- namespace="mapper 인터페이스 경로!!!!" -->
+
+	<!-- //id는 GoodsMapper(인터페이스)안에 있는 메서드 이름 -->
+	<select id="getGoodsList" resultType ="kr.or.ksmart.springboot34_mybatis.domain.Goods">
+		SELECT 
+			g_code
+			, m_id 
+			, g_name 
+			, g_cate 
+			, g_price 
+			, g_color 
+			, g_size 
+			, g_date 
+			, g_desc 
+		FROM 
+			tb_goods
+	</select>
+	<insert id="gInsert" parameterType="kr.or.ksmart.springboot34_mybatis.domain.Goods">
+		INSERT INTO tb_goods
+			(g_code
+			, m_id
+			, g_name
+			, g_cate
+			, g_price
+			, g_color
+			, g_size
+			, g_date
+			, g_desc
+			)	VALUES (
+			#{g_code}
+			, #{m_id}
+			, #{g_name}
+			, #{g_cate}
+			, #{g_price}
+			, #{g_color}
+			, #{g_size}
+			, now()
+			, #{g_desc})
+	</insert>
+
+	<select id="selectforgUpdate" parameterType="String" resultMap="goodsResultMap">
+		SELECT 
+			g_code
+			, m_id 
+			, g_name 
+			, g_cate 
+			, g_price 
+			, g_color 
+			, g_size 
+			, g_date 
+			, g_desc 
+		FROM 
+			tb_goods
+		WHERE
+		g_code=#{g_code};	
+	</select> 
+	<resultMap type="kr.or.ksmart.springboot34_mybatis.domain.Goods" id="goodsResultMap">
+		<result property="g_code" column="g_code"/>
+		<result property="m_id" column="m_id"/>
+		<result property="g_name" column="g_name"/>
+		<result property="g_cate" column="g_cate"/>
+		<result property="g_price" column="g_price"/>
+		<result property="g_color" column="g_color"/>
+		<result property="g_size" column="g_size"/>
+		<result property="g_date" column="g_date"/>
+		<result property="g_desc" column="g_desc"/>
+	
+	</resultMap>
+</mapper>

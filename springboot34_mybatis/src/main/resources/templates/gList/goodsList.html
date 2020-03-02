@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+      
+      
+<th:block layout:fragment="customTitle">
+	<title>상품리스트</title>
+</th:block>
+<th:block layout:fragment="customContents">
+	<form>
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>상품코드</th>
+				<th>회원아이디</th>
+				<th>상품명</th>
+				<th>분류</th>
+				<th>가격</th>
+				<th>색상</th>
+				<th>크기</th>
+				<th>등록일</th>
+				<th>상세설명</th>		
+				<th>수정</th>		
+				<th>삭제</th>		
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="G:${goodsList}">
+				<td th:text="${G.getG_code()}"></td>
+				<td th:text="${G.getM_id()}"></td>
+				<td th:text="${G.getG_name()}"></td>
+				<td th:text="${G.getG_cate()}"></td>
+				<td th:text="${G.getG_price()}"></td>
+				<td th:text="${G.getG_color()}"></td>
+				<td th:text="${G.getG_size()}"></td>
+				<td th:text="${G.getG_date()}"></td>
+				<td th:text="${G.getG_desc()}"></td>
+				
+				<td>
+					<a th:href="@{/gUpdate(g_code=${G.getG_code()})}"> 수정   </a>				
+				</td>
+				<td>
+					<a> 삭제     </a>				
+				</td>				
+			</tr>
+		</tbody>
+	
+	</table>
+
+
+
+
+</th:block>
+</html>

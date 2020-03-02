@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+</head>
+
+
+<body>
+	<h1 th:text="${title}"></h1><br>
+	<h1 th:text="${now}"></h1><br>
+	<div th:with="nowValue=${#dates.createToday()}">
+	   <h1>[[${nowValue}]]</h1><br>
+	</div>
+	<h1 th:text="${#dates.format(now, 'yyyy-MM-dd HH:mm:ss')}"></h1><br>
+	<h1 th:text="${price}"></h1><br>
+	<h1 th:text="${#numbers.formatInteger(price,3,'COMMA')}"></h1><br>
+		
+</body>
+</html>

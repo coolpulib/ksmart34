@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="${title}"></title>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>이름</th>
+				<th>권한</th>
+				<th>이메일</th>				
+		</thead>
+		<tbody>
+			<tr>
+				<td th:text="${member.m_id}"></td>
+				<td th:text="${member.m_pw}"></td>
+				<td th:text="${member.m_name}"></td>
+				<td th:text="${member.m_level}"></td>
+				<td th:text="${member.m_email}"></td>
+		</tbody>
+	</table>
+</body>
+</html>

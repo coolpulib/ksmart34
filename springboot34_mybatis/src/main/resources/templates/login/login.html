@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+
+<th:block layout:fragment="customTitle">
+	<title>index</title>
+</th:block>
+<th:block layout:fragment="customContents">
+	<form th:action="@{/login}" method="post"> <!-- th구문은 사용해도 되고 안해도 됨. 안하면 그냥 html로 인식 -->
+	
+		<table border="1">
+			<tr>
+				<td>회원아이디</td>
+				<td>
+					<input type="text" name="mId">
+			    </td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td>
+					<input type="text" name="mPw">
+			    </td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;">
+					<input type="submit" value="회원로그인">&ensp;
+					<label th:text="${result ne null}? ${result} :''"></label>
+			    </td>
+			</tr>
+		</table>
+	</form>	
+</th:block>
+</html>

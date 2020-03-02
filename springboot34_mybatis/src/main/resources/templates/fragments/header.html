@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<!-- Begin Header -->
+	<div id="header" th:fragment="headerFragment">
+	 	head.html <br>
+		상단 메뉴	<br><br>
+		<a href="/mInsert">01회원가입</a>
+		<a th:href="@{/memberList}">02회원전체검색</a>
+		<a th:href="@{/gInsert}" th:if="${session.SLEVEL ne '구매자' }">03상품등록</a>
+		<a href="/goodsList">04상품전체검색</a>
+		<a href="/boardList">05영화목록</a>
+		<!-- 당신의 아이디 <%= S_ID %> <%= S_NAME %> 님 <%= S_LEVEL %> 권한 -->
+		<a href="/login" th:if="${session.SID eq null}"style="text-align: right;">06로그인</a>
+		<a href="/logout" th:if="${session.SID ne null}" style="text-align: right;">06로그아웃</a>  
+		
+	</div>
+	<!-- End Header -->
+
+</html>

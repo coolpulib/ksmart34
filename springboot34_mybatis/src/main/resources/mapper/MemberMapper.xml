@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ksmart.springboot34_mybatis.mapper.MemberMapper"><!-- namespace="mapper 인터페이스 경로!!!!" -->
+
+ 	<!-- //id는 MemberMapper(인터페이스)안에 있는 메서드 이름 -->
+ 	<select id="getMemberList" resultType="Member">
+ 		SELECT 
+	 		 m_id AS mId
+	 		,m_pw AS mPw
+	 		,m_level AS mLevel
+	 		,m_name AS mName
+	 		,m_email AS mEmail
+ 		FROM 
+ 			tb_member
+ 	</select> 
+ 	<insert id="mInsert" parameterType="Member">
+ 		INSERT INTO tb_member
+			(m_id
+			, m_pw
+			, m_level
+			, m_name
+			, m_email
+			)	VALUES (
+			#{mId}
+			, #{mPw}
+			, #{mLevel}
+			, #{mName}
+			, #{mEmail});
+ 	</insert>
+ 	<select id="selectForUpdate" parameterType="String" resultMap="memberResultMap">
+	 	SELECT
+		 	 m_id
+		 	 , m_pw
+		 	 , m_level
+		 	 , m_name
+		 	 , m_email
+		FROM tb_member
+		WHERE
+		m_id=#{mId};
+	</select>
+	<resultMap type="Member" 
+				id="memberResultMap">
+		<result property="mId" column="m_id"/>
+		<result property="mPw" column="m_pw"/>
+		<result property="mLevel" column="m_level"/>
+		<result property="mName" column="m_name"/>
+		<result property="mEmail" column="m_email"/>		
+	</resultMap>
+	
+	<update id="mUpdate" parameterType="Member">
+	
+		UPDATE tb_member
+		<trim prefix="SET" suffixOverrides=",">
+			<!-- <if test="mId neq null and mId neq ''.toString()">
+				m_id=	#{mId},
+			</if>	 // 네개 다 공백일 때에도 오류를 안 내려면 이런 구문을 넣어서 약간 억지로라도 처리 할 수는 있다-->	
+			<if test="mPw neq null and mPw neq ''.toString()">
+				m_pw=	#{mPw},
+			</if>
+			<if test="mLevel neq null and mLevel neq ''.toString()">
+				m_level=	#{mLevel},
+			</if>
+			<if test="mName neq null and mName neq ''.toString()">
+				m_name=		#{mName},
+			</if>
+			<if test="mEmail neq null and mEmail neq ''.toString()">
+				m_email=	#{mEmail},
+			</if>
+			
+		</trim>
+		WHERE
+			 m_id=#{mId}
+	</update>
+
+	<delete id="mDelete" parameterType="Member">
+
+		DELETE 
+		FROM tb_member 
+		WHERE m_id=#{mId}
+
+	</delete>
+	<select id="getSearchMemberList" parameterType="String" resultMap="memberResultMap"> <!-- 위에 써 있는 거 이용하려고 memberResultMap 쓴거 -->
+		SELECT
+		 	 m_id
+		 	 , m_pw
+		 	 , m_levels
+		 	 , m_name
+		 	 , m_email
+		FROM 
+			tb_member
+		WHERE
+		 	${sk} LIKE CONCAT('%',#{sv},'%');
+		 	
+	</select>
+</mapper>

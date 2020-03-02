@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<th:block layout:fragment="customTitle">
+	<title>상품등록페이지</title>
+</th:block>
+<th:block layout:fragment="customContents">
+	<form th:action="@{/gInsert}" method="post"> <!-- post로 넘겨주는 정보니까 controller의 메서드를 실행하겠징 -->
+		<table border="1">
+			<tr>
+				<td>상품코드</td>
+				<td>
+					<input type="text" name="g_code">
+				</td>
+			</tr>
+			<tr>	
+				<td>회원아이디</td>
+				<td>
+					<input type="text" name="m_id">
+				</td>
+			</tr>
+			<tr>	
+				<td>상품명</td>
+				<td>
+					<input type="text" name="g_name">
+				</td>
+			</tr>
+			<tr>	
+				<td>분류</td>
+				<td>
+					<input type="text" name="g_cate">
+				</td>
+			</tr>
+			<tr>		
+				<td>가격</td>
+				<td>
+					<input type="text" name="g_price">
+				</td>
+			</tr>
+			<tr>		
+				<td>색상</td>
+				<td>
+					<input type="text" name="g_color">
+				</td>
+			</tr>
+			<tr>		
+				<td>크기</td>
+				<td>
+					<input type="text" name="g_size">
+				</td>
+			</tr>
+			<tr>	
+				<td>등록일</td>
+				<td>
+					<input type="text" name="g_date" placeholder="현재시각자동입력 중입니다">
+				</td>
+			</tr>
+			<tr>	
+				<td>상세설명</td>
+				<td>
+					<input type="text" name="g_desc">
+				</td>
+			</tr>
+			<tr>	
+				<td colspan="2" style="text-align: center;">
+					<input type="submit" value="상품등록"/>
+				</td>					
+			</tr>
+				
+		</table>
+		
+	</form>
+</th:block>
+</html>
